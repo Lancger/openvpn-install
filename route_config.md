@@ -107,6 +107,42 @@ tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
           TX packets:9609642 errors:0 dropped:4133 overruns:0 carrier:0
           collisions:0 txqueuelen:100 
           RX bytes:3976601425 (3.7 GiB)  TX bytes:9620298989 (8.9 GiB)
+          
+          
+调整服务器网络设置
+首先需要允许IP转发，用下面的命令打开配置文件：
+sudo nano /etc/sysctl.conf
+
+net.ipv4.ip_forward=1
+
+sudo sysctl -p
+
+防火墙配置
+
+这个文件处理在加载常规UFW规则之前应该被放置的文件，在这个文件的最开始处加入下面红色部分的内容。这样可以为nat表设置POSTROUTING默认规则，并且为来自VPN的任何流量设置伪装连接。
+vim /etc/ufw/before.rules
+
+# START OPENVPN RULES
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+# Allow traffic from OpenVPN client to eth0(changeto the interface you discovered!)
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -jMASQUERADE
+COMMIT
+# END OPENVPN RULES
+
+然后告诉防火墙默认允许转发包：
+
+$ vim /etc/default/ufw
+在这个文件里面，找到DEFAULT_FORWARD_POLICY指令，将它的值从DROP改成ACCEPT：
+DEFAULT_FORWARD_POLICY="ACCEPT"
+完成后保存并退出。
+
+
+
+
+
+https://blog.csdn.net/u012843189/article/details/77422505
 ```
 
 https://blog.csdn.net/qq_36743482/article/details/73610171  windows删除路由
