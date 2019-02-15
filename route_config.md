@@ -150,6 +150,43 @@ sudo ufw disable  命令来关闭防火墙
 
 sudo ufw status  命令来查看防火墙
 
+显示防火墙和端口的侦听状态，参见 /var/lib/ufw/maps。括号中的数字将不会被显示出来。
+
+sudo ufw status
+
+UFW 使用范例：
+
+允许 53 端口
+
+$ sudo ufw allow 53
+
+禁用 53 端口
+
+$ sudo ufw delete allow 53
+
+允许 80 端口
+
+$ sudo ufw allow 80/tcp
+
+禁用 80 端口
+
+$ sudo ufw delete allow 80/tcp
+
+允许 smtp 端口
+
+$ sudo ufw allow smtp
+
+删除 smtp 端口的许可
+
+$ sudo ufw delete allow smtp
+
+允许某特定 IP
+
+$ sudo ufw allow from 192.168.254.254
+
+删除上面的规则
+
+$ sudo ufw delete allow from 192.168.254.254 
 
 https://blog.csdn.net/u012843189/article/details/77422505
 ```
@@ -158,6 +195,7 @@ https://blog.csdn.net/qq_36743482/article/details/73610171  windows删除路由
 
 参考文档：
 
+https://www.cnblogs.com/lyd96321/p/6255425.html   ubuntu 默认防火墙安装、启用、查看状态 
 
 https://www.52os.net/articles/openvpn-add-local-routing-table.html
 
