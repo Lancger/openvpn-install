@@ -89,7 +89,10 @@ widows系统上连接vpn
 2：放入登录秘钥zzh.ovpn
    客户端默认安装的，把秘钥放入C:\Program Files\OpenVPN\config
   （我这里安装时是自定义安装路径：如下图）
-  
+```
+  ![windows openvpn软件下载](https://github.com/Lancger/openvpn-install/blob/master/windows-openvpn-02.png)
+
+```
 4:openvpn配置文件更改：
 
 vim /etc/openvpn/server.conf
