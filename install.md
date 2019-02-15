@@ -76,3 +76,12 @@ Data Base Updated
  
 Client zzh added, configuration is available at: /root/zzh.ovpn   ~~~~~~~---登录vpn的秘钥，下载到widows系统的桌面上
 ```
+
+## 三、连接vpn
+```bash
+widows系统上连接vpn
+1：下载客户端
+   https://openvpn.net/community-downloads/
+   
+   
+```
