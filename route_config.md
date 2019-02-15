@@ -36,6 +36,79 @@ COMMIT
 # Completed on Fri Mar  9 15:25:06 2018
 ```
 
+## 三、server和client配置
+```
+root># cat /etc/openvpn/server.conf 
+port 1194
+proto tcp
+dev tun
+ca /etc/openvpn/ssl/ca.crt
+cert /etc/openvpn/ssl/yjbvpnserver.crt
+key /etc/openvpn/ssl/yjbvpnserver.key  # This file should be kept secret
+dh /etc/openvpn/ssl/dh.pem 
+server 10.10.200.0 255.255.255.0
+#ifconfig-pool-persist /etc/openvpn/ipp.txt
+client-config-dir /etc/openvpn/ccd
+#push "redirect-gateway def1 bypass-dhcp"
+#push "dhcp-option DNS 223.5.5.5"  
+client-to-client
+duplicate-cn
+keepalive 10 120
+#tls-auth /etc/openvpn/keys/ta.key 0 # This file is secret
+comp-lzo
+persist-key
+persist-tun
+status openvpn-status.log
+verb 3
+#redirect-gateway def1 
+
+#客户端文件
+cat client.ovpn 
+client
+dev tun
+proto tcp
+remote 119.23.255.66
+resolv-retry infinite
+nobind
+auth-nocache
+persist-key
+persist-tun
+ca ca.crt
+cert yjbvpnc5.crt
+key yjbvpnc5.key
+comp-lzo
+verb 4
+max-routes 1000
+route 172.16.16.0 255.255.255.0 vpn_gateway 
+
+
+#vpn服务器信息
+root># ifconfig 
+eth0      Link encap:Ethernet  HWaddr 00:16:3E:04:08:0A  
+          inet addr:172.16.16.118  Bcast:172.16.16.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1554626825 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1736986974 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:649016259531 (604.4 GiB)  TX bytes:9043635248969 (8.2 TiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:26246790 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:26246790 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:2080487771 (1.9 GiB)  TX bytes:2080487771 (1.9 GiB)
+
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:10.10.200.1  P-t-P:10.10.200.2  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:7682730 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9609642 errors:0 dropped:4133 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:3976601425 (3.7 GiB)  TX bytes:9620298989 (8.9 GiB)
+```
+
 https://blog.csdn.net/qq_36743482/article/details/73610171  windows删除路由
 
 参考文档：
