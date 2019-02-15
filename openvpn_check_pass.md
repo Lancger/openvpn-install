@@ -1,9 +1,12 @@
-```bash
-Openvpn 本地密码验证
+## 一、Openvpn 本地密码验证
 
+```bash
+# 安装
 wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
 
 https://github.com/Nyr/openvpn-install
+
+# 基于用户名密码验证
 
 1.修改配置文件。（添加下列配置）
 
