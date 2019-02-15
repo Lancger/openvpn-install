@@ -144,6 +144,13 @@ $ ufw allow 1194/tcp
 $ ufw allow OpenSSH    ---一定要执行这个
 
 
+sudo ufw enable  命令来关闭防火墙
+
+sudo ufw disable  命令来关闭防火墙
+
+sudo ufw status  命令来查看防火墙
+
+
 https://blog.csdn.net/u012843189/article/details/77422505
 ```
 
