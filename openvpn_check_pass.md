@@ -83,10 +83,9 @@ vim client.ovpn
 再添加这一行，添加这行，就会提示输入用户名和密码
 auth-user-pass
 
-tls-auth ta.key 1 #如果服务器设置了防御DoS等攻击的ta.key，则必须每个客户端开启；如果未设置，则注释掉这一行；
-
 6.最后重启服务
 
+systemctl start openvpn@server
 ```
 
 
