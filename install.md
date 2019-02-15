@@ -83,5 +83,42 @@ widows系统上连接vpn
 1：下载客户端
    https://openvpn.net/community-downloads/
    
-   
+2：放入登录秘钥zzh.ovpn
+   客户端默认安装的，把秘钥放入C:\Program Files\OpenVPN\config
+  （我这里安装时是自定义安装路径：如下图）
+  
+4:openvpn配置文件更改：
+
+vim /etc/openvpn/server.conf
+ 
+port 1194    --使用的端口
+proto tcp    --使用的协议
+dev tun
+sndbuf 0
+rcvbuf 0
+ca ca.crt
+cert server.crt
+key server.key
+dh dh.pem
+auth SHA512
+tls-auth ta.key 0
+topology subnet
+server 10.9.0.0 255.255.255.0   --客户端连接vpn，给登录的用户分配的ip范围
+ifconfig-pool-persist ipp.txt
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
+keepalive 10 120
+cipher AES-256-CBC
+user nobody
+group nobody
+persist-key
+persist-tun
+status openvpn-status.log
+verb 3
+crl-verify crl.pem
+ 
+ 
+重启服务器
+  systemctl restart openvpn@server.service
 ```
