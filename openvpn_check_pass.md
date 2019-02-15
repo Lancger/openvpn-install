@@ -15,28 +15,64 @@ username-as-common-name　　　　　　　　　　　　　　　　
 script-security 3　　　　　　　　　　　　　　　　　　　　　　　　    #加入script-security消除以下警告  不是很了解，不加拨号失败（允许OPenvpn使用用户自动以脚本）
 
 2.添加验证脚本，密码文件。
+[root@openvpn openvpn]# vim /etc/openvpn/checkpsw.sh　　#验证脚本  
 
-[root@openvpn openvpn]# vim checkpsw.sh　　#验证脚本  设定好权限　chmod 400 checkpsw.sh 　chmod +x checkpsw.sh   不要弄反了
+#设定好权限
+cd /etc/openvpn/
+chown nobody:nobody checkpsw.sh     
+chmod 744 checkpsw.sh 　
+chmod +x checkpsw.sh   
 
+checkpsw.sh  脚本可以通过网络获取
+wget -O /etc/openvpn/checkpsw.sh http://openvpn.se/files/other/checkpsw.sh
+
+3.脚本详细内容
+#!/bin/sh
+###########################################################
+# checkpsw.sh (C) 2004 Mathias Sundman <mathias@openvpn.se>
+#
+# This script will authenticate OpenVPN users against
+# a plain text file. The passfile should simply contain
+# one row per user with the username first followed by
+# one or more space(s) or tab(s) and then the password.
  
-checkpsw.sh权限设置为：-rwxr--r-- (744)
-
+PASSFILE="/etc/openvpn/psw-file"
+LOG_FILE="/etc/openvpn/openvpn-password.log"
+TIME_STAMP=`date "+%Y-%m-%d %T"`
  
-所有者：nobody
-
+###########################################################
  
-chown nobody:nobody checkpsw.sh     #需要先cd到该目录
-
+if [ ! -r "${PASSFILE}" ]; then
+  echo "${TIME_STAMP}: Could not open password file \"${PASSFILE}\" for reading." >> ${LOG_FILE}
+  exit 1
+fi
  
-脚本如下，自行copy并命名为checkpsw.sh
-
+CORRECT_PASSWORD=`awk '!/^;/&&!/^#/&&$1=="'${username}'"{print $2;exit}' ${PASSFILE}`
  
+if [ "${CORRECT_PASSWORD}" = "" ]; then
+  echo "${TIME_STAMP}: User does not exist: username=\"${username}\", password=\"${password}\"." >> ${LOG_FILE}
+  exit 1
+fi
+ 
+if [ "${password}" = "${CORRECT_PASSWORD}" ]; then
+  echo "${TIME_STAMP}: Successful authentication: username=\"${username}\"." >> ${LOG_FILE}
+  exit 0
+fi
+ 
+echo "${TIME_STAMP}: Incorrect password: username=\"${username}\", password=\"${password}\"." >> ${LOG_FILE}
+exit 1
 
-checkpsw.sh脚本可以通过网络获取
 
-wget http://openvpn.se/files/other/checkpsw.sh
+checkpsw.sh 默认从文件/etc/openvpn/psw-file 中读取用户名密码。
 
-checkpsw.sh默认从文件/etc/openvpn/psw-file中读取用户名密码。
+4.密码验证文件　　
+chmod 400 psw-file　
+chown nobody.nobody psw-file
+
+
+psw-file 中一行是一个账号，用户名和密码之间用空格隔开
+username   password
+
 ```
 
 参考文档：
