@@ -93,6 +93,7 @@ widows系统上连接vpn
   ![openvpn02](https://github.com/Lancger/openvpn-install/blob/master/windows-openvpn-02.png)
   ![openvpn03](https://github.com/Lancger/openvpn-install/blob/master/windows-openvpn-03.png)
 
+
 ```
 3:openvpn配置文件更改：
 
@@ -124,8 +125,11 @@ persist-tun
 status openvpn-status.log
 verb 3
 crl-verify crl.pem
- 
- 
+```
+
+  ![openvpn04](https://github.com/Lancger/openvpn-install/blob/master/windows-openvpn-04.png)
+
+``` 
 重启服务器
   systemctl restart openvpn@server.service
 ```
