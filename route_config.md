@@ -122,14 +122,13 @@ sudo sysctl -p
 这个文件处理在加载常规UFW规则之前应该被放置的文件，在这个文件的最开始处加入下面红色部分的内容。这样可以为nat表设置POSTROUTING默认规则，并且为来自VPN的任何流量设置伪装连接。
 vim /etc/ufw/before.rules
 
-# START OPENVPN RULES
-# NAT table rules
+
+3.修改before.rules,添加相应的nat配置,直接添加到文件末尾的COMMIT下面就可以了.
 *nat
-:POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to eth0(changeto the interface you discovered!)
--A POSTROUTING -s 10.8.0.0/8 -o eth0 -jMASQUERADE
+:PREROUTING - [0:0]
+:POSTROUTING - [0:0]
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
 COMMIT
-# END OPENVPN RULES
 
 然后告诉防火墙默认允许转发包：
 
@@ -146,9 +145,13 @@ $ ufw allow OpenSSH    ---一定要执行这个
 
 sudo ufw enable  命令来关闭防火墙
 
+sudo ufw reload  命令来重载防火墙
+
 sudo ufw disable  命令来关闭防火墙
 
 sudo ufw status  命令来查看防火墙
+
+iptables -L -t nat
 
 显示防火墙和端口的侦听状态，参见 /var/lib/ufw/maps。括号中的数字将不会被显示出来。
 
