@@ -139,7 +139,9 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 完成后保存并退出。
 
 
-
+$ ufw allow 1194/udp
+$ ufw allow 1194/tcp
+$ ufw allow OpenSSH    ---一定要执行这个
 
 
 https://blog.csdn.net/u012843189/article/details/77422505
