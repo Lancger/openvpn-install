@@ -111,7 +111,7 @@ dh dh.pem
 auth SHA512
 tls-auth ta.key 0
 topology subnet
-server 10.9.0.0 255.255.255.0   --客户端连接vpn，给登录的用户分配的ip范围
+server 10.9.0.0 255.255.255.0    //给客户端分配地址池，注意：不能和VPN服务器内网网段相同
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 8.8.8.8"
