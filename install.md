@@ -40,8 +40,9 @@ Your client configuration is available at: /root/client.ovpn
 If you want to add more clients, you simply need to run this script again!
 ```
 
+## 二、使用vpn创建和删除用户，以及卸载vpn
+
 ```bash
-二、使用vpn创建和删除用户，以及卸载vpn
  
 [root@localhost mnt]# bash openvpn-install.sh 
 Looks like OpenVPN is already installed.
