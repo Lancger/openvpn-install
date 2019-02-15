@@ -142,6 +142,7 @@ $ ufw allow 1194/udp
 $ ufw allow 1194/tcp
 $ ufw allow OpenSSH    ---一定要执行这个
 
+https://www.logcg.com/archives/993.html    ufw 策略
 
 sudo ufw enable  命令来关闭防火墙
 
