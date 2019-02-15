@@ -73,7 +73,23 @@ chown nobody.nobody psw-file
 psw-file 中一行是一个账号，用户名和密码之间用空格隔开
 username   password
 
+5.修改客户端配置
+vim client.ovpn
+
+注销掉这两行 
+#cert peara.crt
+#key peara.key
+
+再添加这一行，添加这行，就会提示输入用户名和密码
+auth-user-pass
+
+tls-auth ta.key 1 #如果服务器设置了防御DoS等攻击的ta.key，则必须每个客户端开启；如果未设置，则注释掉这一行；
+
+6.最后重启服务
+
 ```
+
+
 
 参考文档：
 
