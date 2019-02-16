@@ -181,8 +181,10 @@ default via 172.18.79.253 dev eth0 proto dhcp src 172.18.71.139 metric 100
 
 sudo vim /etc/ufw/before.rules
 
-新增下面nat配置(加到文件最后)
+新增下面nat配置(加到最后ufw-before-forward和filter之间)
+#   ufw-before-forward
 
+....
 # START OPENVPN RULES
 # NAT table rules
 *nat
@@ -192,6 +194,10 @@ sudo vim /etc/ufw/before.rules
 #-A POSTROUTING -o eth0 -j MASQUERADE
 COMMIT
 # END OPENVPN RULES
+...
+
+# Don't delete these required lines, otherwise there will be errors
+*filter
 
 sudo vim /etc/default/ufw
 
