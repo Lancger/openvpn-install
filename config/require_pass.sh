@@ -1,4 +1,6 @@
 ## 服务器配置文件
+#server.conf
+
 local 0.0.0.0
 port 1194                #指定端口
 proto tcp                #指定协议
@@ -30,3 +32,22 @@ log openvpn.log
 verb 3
 
 ## 客户端配置文件
+#client.ovpn
+
+client
+dev tun
+proto tcp                  #和server端一致
+remote 47.106.242.1 1194   #指定服务端IP和端口
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+remote-cert-tls server
+ca ca.crt              #ca证书
+cert client01.crt      #客户端证书
+key client01.key       #客户端密钥
+tls-auth ta.key 1      #ta密钥
+cipher AES-256-CBC
+comp-lzo               #传输内容压缩
+verb 3                 #日志级别
+auth-user-pass
