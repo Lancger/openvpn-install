@@ -18,7 +18,15 @@ yum makecache
 yum -y install openvpn easy-rsa
 yum install -y net-tools.x86_64 ntp ntpdate bridge-utils gcc libssl-dev openssl-devel pam-devel
 ```
+3. 开启系统系统IP转发
+```
+vi /etc/sysctl.conf
+修改或添加参数
+net.ipv4.ip_forward=1
 
+保存文件
+sysctl –p
+```
 # 二、配置easy-rsa-3.0
 1. 复制文件
 ```
