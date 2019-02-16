@@ -298,10 +298,22 @@ openvpn --daemon --cd /etc/openvpn --config client.ovpn --log-append /var/log/op
 ```
 
 ## 七、防火墙设置
+
+假设还有其他同一网段局域网的机器，拨了vpn需要能跟其他机器通信，需要进行下面操作（这里假设还有一台172.18.71.138的内网机器）
+
 1.开启内核转发
 ```
-[root@localhost]# sed -i 's#net.ipv4.ip_forward = 0#net.ipv4.ip_forward = 1#' /etc/sysctl.conf
-[root@localhost]# sysctl -p
+临时生效：
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+永久生效的话，需要修改sysctl.conf
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+
+已存在替换
+sed -i 's#net.ipv4.ip_forward = 0#net.ipv4.ip_forward = 1#' /etc/sysctl.conf
+
+立即生效
+sysctl -p
 
 设置nat转发:
 注：保证VPN地址池可路由出外网
