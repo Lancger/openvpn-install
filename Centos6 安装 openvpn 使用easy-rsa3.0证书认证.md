@@ -145,7 +145,17 @@ DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem      #dh证书路�
 ```
 
 ## 四、客户端证书
+
+为了便于区别，我们把客户端使用的证书存放在新的路径。/etc/openvpn/client
+
+1.创建客户端证书
 ```
+[root@openvpn client]# mkdir -p /etc/openvpn/client
+[root@openvpn client]# cd /etc/openvpn/client
+[root@openvpn client]# cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/client
+[root@openvpn client]# cp /usr/share/doc/easy-rsa-3.0.3/vars.example ./vars
+[root@openvpn client]# ./easyrsa init-pki
+[root@openvpn client]# ./easyrsa gen-req client01 nopass      #client01为证书名，可自定义，nopass同样设置免密
 
 ```
 参考资料：
