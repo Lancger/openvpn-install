@@ -117,22 +117,20 @@ verb 3
 ```
 yum install -y openvpn     #linux客户端安装
 
-cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/client.conf /etc/openvpn/client.ovpn
-
-cat /etc/openvpn/client.ovpn
+cat /etc/openvpn/client1.ovpn
 
 client
 dev tun
 proto tcp                  #和server端一致
-remote 47.106.242.1 1194   #指定服务端IP和端口
+remote 120.79.153.251 1194   #指定服务端IP和端口
 resolv-retry infinite
 nobind
 persist-key
 persist-tun
 remote-cert-tls server
 ca ca.crt              #ca证书
-cert client01.crt      #客户端证书
-key client01.key       #客户端密钥
+cert client1.crt      #客户端证书
+key client1.key       #客户端密钥
 tls-auth ta.key 1      #ta密钥
 cipher AES-256-CBC
 comp-lzo               #传输内容压缩
