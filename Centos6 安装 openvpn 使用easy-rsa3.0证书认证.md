@@ -278,9 +278,9 @@ verb 3                 #日志级别
 ```
 4.客户端所需证书(下载保存到客户端和客户端配置文件同一目录下)
 ```
-/etc/openvpn/easy-rsa/pki/issued/client01.crt #在服务端证书生成目录下
-/etc/openvpn/client/pki/private/client01.key #上面的客户端生成目录下
-/etc/openvpn/easy-rsa/pki/ca.crt #ca证书
+/etc/openvpn/easy-rsa/pki/issued/client01.crt    #在服务端证书生成目录下
+/etc/openvpn/client/pki/private/client01.key     #上面的客户端生成目录下
+/etc/openvpn/easy-rsa/pki/ca.crt                 #ca证书
 /etc/openvpn/ta.key
 ```
 
