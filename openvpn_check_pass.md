@@ -65,7 +65,8 @@ exit 1
 
 checkpsw.sh 默认从文件/etc/openvpn/psw-file 中读取用户名密码。
 
-4.密码验证文件　　
+4.密码验证文件
+vim /etc/openvpn/psw-file
 chmod 400 psw-file　
 chown nobody.nobody psw-file
 
