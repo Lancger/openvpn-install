@@ -61,137 +61,27 @@ ln -s openssl-1.0.0.cnf openssl.cnf
 1.制作证书
 ```
 $ ./build-key-server server
-```
-2.证书签名、签约
-```
-[root@openvpn easy-rsa]# ./easyrsa sign server vpn_server   #vpn_server根据上面证书名保持一致
 
-Note: using Easy-RSA configuration from: ./vars
+$ ./build-dh
 
+$ openvpn --genkey --secret keys/ta.key
 
-You are about to sign the following certificate.
-Please check over the details shown below for accuracy. Note that this request
-has not been cryptographically verified. Please be sure it came from a trusted
-source or that you have verified the request checksum with the sender.
-
-Request subject, to be signed as a server certificate for 3650 days:
-
-subject=
-    commonName                = vpn_server
-
-
-Type the word 'yes' to continue, or any other input to abort.
-  Confirm request details: yes
-Using configuration from ./openssl-1.0.cnf
-Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:     123456       #输入上面ca证书生成时的密码（123456）
-Check that the request matches the signature
-Signature ok
-The Subject's Distinguished Name is as follows
-commonName            :PRINTABLE:'vpn_server'
-Certificate is to be certified until May 22 03:23:38 2028 GMT (3650 days)
-
-Write out database with 1 new entries
-Data Base Updated
-
-Certificate created at: /etc/openvpn/easy-rsa/pki/issued/vpn_server.crt          #服务端证书路径
-```
-
-3.dh证书
-```
-[root@openvpn easy-rsa]# ./easyrsa gen-dh     #创建Diffie-Hellman，时间有点长
-Note: using Easy-RSA configuration from: ./vars
-Generating DH parameters, 2048 bit long safe prime, generator 2
-This is going to take a long time
-........................................++*++*
-
-DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem      #dh证书路径
-```
-
-4.ta密钥
-```
-[root@openvpn easy-rsa]# cd /etc/openvpn
-[root@openvpn openvpn]# openvpn --genkey --secret ta.key
 ```
 
 ## 四、客户端证书
 
-为了便于区别，我们把客户端使用的证书存放在新的路径。/etc/openvpn/client
-
 1.创建客户端证书
 ```
-[root@openvpn client]# mkdir -p /etc/openvpn/client
-[root@openvpn client]# cd /etc/openvpn/client
-[root@openvpn client]# cp -r /etc/openvpn/easy-rsa/* /etc/openvpn/client/
-[root@openvpn client]# ./easyrsa init-pki
-[root@openvpn client]# ./easyrsa gen-req client01 nopass   #client01为证书名，可自定义，nopass同样设置免密
-
-Note: using Easy-RSA configuration from: ./vars
-Generating a 2048 bit RSA private key
-....+++
-....................+++
-writing new private key to '/etc/openvpn/client/pki/private/client01.key.wDFG7wJLuL'
------
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,
-If you enter '.', the field will be left blank.
------
-Common Name (eg: your user, host, or server name) [client01]:
-
-Keypair and certificate request completed. Your files are:
-req: /etc/openvpn/client/pki/reqs/client01.req
-key: /etc/openvpn/client/pki/private/client01.key   #key路径
-
-```
-
-2.对客户端证书签名、签约
-```
-#切换到服务端easy-rsa目录下：
-[root@openvpn client]# cd /etc/openvpn/easy-rsa
-#导入req
-[root@openvpn easy-rsa]# ./easyrsa import-req /etc/openvpn/client/pki/reqs/client01.req client01
-
-[root@openvpn easy-rsa]# ./easyrsa sign client client01
-Note: using Easy-RSA configuration from: ./vars
-
-
-You are about to sign the following certificate.
-Please check over the details shown below for accuracy. Note that this request
-has not been cryptographically verified. Please be sure it came from a trusted
-source or that you have verified the request checksum with the sender.
-
-Request subject, to be signed as a client certificate for 3650 days:
-
-subject=
-    commonName                = client01
-
-
-Type the word 'yes' to continue, or any other input to abort.
-  Confirm request details: yes                                    #输入'yes'
-Using configuration from ./openssl-1.0.cnf
-Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:   #输入ca密码（123456）
-Check that the request matches the signature
-Signature ok
-The Subject's Distinguished Name is as follows
-commonName            :PRINTABLE:'client01'
-Certificate is to be certified until Apr 13 14:37:17 2028 GMT (3650 days)
-
-Write out database with 1 new entries
-Data Base Updated
-
-Certificate created at: /etc/openvpn/easy-rsa/pki/issued/client01.crt     #最终客户端证书路径
+$ ./build-key client1
 
 ```
 
 ## 五、修改配置文件
 1.服务器端证书和密钥统一放到和server.conf一个目录下，便于配置
 ```
-cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/private/vpn_server.key /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/issued/vpn_server.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/
+cd ~/openvpn-ca/keys
+sudo cp ca.crt server.crt server.key ta.key dh2048.pem /etc/openvpn
+
 ```
 2.修改openvpn服务端配置文件server.conf
 ```
