@@ -88,8 +88,6 @@ auth-user-pass
 systemctl start openvpn@server
 ```
 
-
-
 参考文档：
 
 https://www.cnblogs.com/sunpear/p/5722482.html
