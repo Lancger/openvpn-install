@@ -220,8 +220,8 @@ Certificate created at: /etc/openvpn/easy-rsa/pki/issued/client01.crt     #最�
 1.服务器端证书和密钥统一放到和server.conf一个目录下，便于配置
 ```
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/
+cp /etc/openvpn/easy-rsa/pki/private/vpn_server.key /etc/openvpn/
+cp /etc/openvpn/easy-rsa/pki/issued/vpn_server.crt /etc/openvpn/
 cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/
 ```
 2.修改openvpn服务端配置文件server.conf
