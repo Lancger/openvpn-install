@@ -211,6 +211,7 @@ iptables-save > /etc/sysconfig/iptables
 
 #查看防火墙nat策略
 iptables -t nat -L -n
+
 ```
 参考资料：
 
