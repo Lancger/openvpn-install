@@ -4,7 +4,7 @@ OpenVPN在Ubuntu的默认仓库中是可用的，所以我们可用使用apt来�
 
 $ sudo apt-get update
 $ sudo apt-get install openvpn easy-rsa
-$ sudo apt-get install bridge-utils libssl-dev openssl
+$ sudo apt-get install libssl-dev openssl
 
 上述命令执行完成后，会有一个/etc/openvpn的目录，通常我们把配置文件都放在这个目录下。
 ```
