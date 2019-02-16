@@ -42,9 +42,9 @@ set_var EASYRSA_REQ_EMAIL       "test@example.net"     #邮箱
 set_var EASYRSA_REQ_OU          "My Organizational Unit"    #公司、组织
 
 
-[root@localhost easy-rsa]# ./easyrsa init-pki          #初始化pki，生成目录文件结构
+[root@openvpn easy-rsa]# ./easyrsa init-pki          #初始化pki，生成目录文件结构
 
-[root@localhost easy-rsa]# ./easyrsa build-ca            #创建ca证书
+[root@openvpn easy-rsa]# ./easyrsa build-ca            #创建ca证书
 
 Note: using Easy-RSA configuration from: ./vars            #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
@@ -69,9 +69,30 @@ Your new CA certificate file for publishing is at:
 ```
 
 2.服务端证书server.crt
+
+1).制作证书
+```
+[root@openvpn easy-rsa]# ./easyrsa gen-req server nopass   #nopass设置免证书密码，如果要设置密码可以取消此参数选项
+Note: using Easy-RSA configuration from: ./vars       #使用vars文件里面配置的信息
+Generating a 2048 bit RSA private key
+.....................................+++
+................................................................................................+++
+writing new private key to '/etc/openvpn/easy-rsa/pki/private/server.key.yuG9HRsSlU'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Common Name (eg: your user, host, or server name) [server]:    #直接回车，默认名字为server
+
+Keypair and certificate request completed. Your files are:
+req: /etc/openvpn/easy-rsa/pki/reqs/server.req
+key: /etc/openvpn/easy-rsa/pki/private/server.key              #密钥key的路径
 ```
 
-```
 参考资料：
 
 http://www.89cool.com/807.html
