@@ -1,7 +1,9 @@
 ## 一、安装openvpn
 ```bash
-yum install -y epel-release
-yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig
+OpenVPN在Ubuntu的默认仓库中是可用的，所以我们可用使用apt来安装。我们还需安装一个easy-rsa包，这个包可以帮助我们建立一个内部CA（certificate authority）用于使用我们VPN。
+
+$ sudo apt-get update
+$ sudo apt-get install openvpn easy-rsa
 
 上述命令执行完成后，会有一个/etc/openvpn的目录，通常我们把配置文件都放在这个目录下。
 ```
