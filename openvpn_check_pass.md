@@ -20,7 +20,7 @@ script-security 3　　　　　　　　　　　　　　　　　　　　　
 #设定好权限
 cd /etc/openvpn/
 chown nobody:nobody checkpsw.sh     
-chmod 744 checkpsw.sh 　
+chmod 744 checkpsw.sh
 chmod +x checkpsw.sh   
 
 checkpsw.sh  脚本可以通过网络获取
