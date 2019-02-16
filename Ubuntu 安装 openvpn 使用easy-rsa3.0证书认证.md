@@ -17,7 +17,6 @@ $ sudo make-cadir /etc/openvpn/easy-rsa/
 上面这条命令也用下面的两条命令来做：
 $ mkdir /etc/openvpn/easy-rsa/
 $ cp -r /usr/share/easy-rsa/*  /etc/openvpn/easy-rsa/
-
 ```
 
 ## 二、服务器证书ca.crt
@@ -66,7 +65,6 @@ $ ./build-key-server server
 $ ./build-dh
 
 $ openvpn --genkey --secret keys/ta.key
-
 ```
 
 ## 四、客户端证书
