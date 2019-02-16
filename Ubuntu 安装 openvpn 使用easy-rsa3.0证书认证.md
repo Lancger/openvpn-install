@@ -22,7 +22,8 @@ $ cp -r /usr/share/easy-rsa/*  /etc/openvpn/easy-rsa/
 
 ## 二、服务器证书ca.crt
 
-首先进入到我们新创建的目录中来开始配置CA：
+首先进入到我们新创建的目录中来开始配置CA
+
 1.ca证书制作
 ```
 $ cd /etc/openvpn/easy-rsa/
