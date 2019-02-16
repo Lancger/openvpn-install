@@ -78,7 +78,7 @@ $ ./build-key client1
 ## 五、修改配置文件
 1.服务器端证书和密钥统一放到和server.conf一个目录下，便于配置
 ```
-cd ~/openvpn-ca/keys
+cd cd /etc/openvpn/easy-rsa/keys/
 
 sudo cp ca.crt server.crt server.key ta.key dh2048.pem /etc/openvpn
 
@@ -92,9 +92,9 @@ port 1194                #指定端口
 proto tcp                #指定协议
 dev tun                  #采用路由隧道模式
 ca ca.crt                #ca证书位置，相对路径，表示ca.crt和server.conf要在同一目录
-cert vpn_server.crt      #服务端证书
-key vpn_server.key       #服务端key
-dh dh.pem                #dh密钥
+cert server.crt      #服务端证书
+key server.key       #服务端key
+dh dh2048.pem                #dh密钥
 server 10.8.0.0 255.255.255.0        #给客户端分配的地址池
 ifconfig-pool-persist ipp.txt
 push "route 172.18.71.0 255.255.255.0 vpn_gateway"    #访问172.18.71.0/24网段走vpn网关,其他的走默认网关
