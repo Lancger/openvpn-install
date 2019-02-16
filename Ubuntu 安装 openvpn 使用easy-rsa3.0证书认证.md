@@ -12,11 +12,11 @@ $ sudo apt-get install bridge-utils libssl-dev openssl
 2.复制服务端配置文件到配置文件目录
 ```
 开始之前，我们可以使用make-cadir命令，用于复制easy-rsa临时目录到我们的home目录下面：
-$ make-cadir ~/openvpn-ca
+$ sudo make-cadir /etc/openvpn/easy-rsa/
 
 上面这条命令也用下面的两条命令来做：
-$ mkdir ~/openvpn-ca
-$ cp -r /usr/share/easy-rsa/*  ~/openvpn-ca
+$ mkdir /etc/openvpn/easy-rsa/
+$ cp -r /usr/share/easy-rsa/*  /etc/openvpn/easy-rsa/
 
 ```
 
