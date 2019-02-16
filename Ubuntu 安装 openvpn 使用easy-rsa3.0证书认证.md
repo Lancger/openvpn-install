@@ -25,8 +25,8 @@ $ cp -r /usr/share/easy-rsa/*  /etc/openvpn/easy-rsa/
 首先进入到我们新创建的目录中来开始配置CA：
 1.ca证书制作
 ```
-$ cd ~/openvpn-ca
-$ vim ~/openvpn-ca/vars    #修改证书的相关配置，根据需要自定义，也可以忽略不设置
+$ cd /etc/openvpn/easy-rsa/
+$ vim /etc/openvpn/easy-rsa/vars    #修改证书的相关配置，根据需要自定义，也可以忽略不设置
 
 export KEY_COUNTRY="CN"
 export KEY_PROVINCE="GD"
