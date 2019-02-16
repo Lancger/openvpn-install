@@ -236,11 +236,12 @@ ca ca.crt                #ca证书位置，相对路径，表示ca.crt和server.
 cert vpn_server.crt      #服务端证书
 key vpn_server.key       #服务端key
 dh dh.pem                #dh密钥
-server 10.8.0.0 255.255.255.0                #给客户端分配的地址池
+server 10.8.0.0 255.255.255.0        #给客户端分配的地址池
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1 bypass-dhcp"     #客户端网关使用openvpn服务器网关
-push "dhcp-option DNS 8.8.8.8"               #指定dns
-push "dhcp-option DNS 114.114.114.114"
+push "route 172.18.71.0 255.255.255.0 vpn_gateway"    #访问172.18.71.0/24网段走vpn网关,其他的走默认网关
+#push "redirect-gateway def1 bypass-dhcp"             #客户端网关使用openvpn服务器网关
+#push "dhcp-option DNS 8.8.8.8"                       #指定dns
+#push "dhcp-option DNS 114.114.114.114"
 keepalive 10 120              #心跳检测，10秒检测一次，2分钟内没有回应则视为断线
 tls-auth ta.key 0             #服务端值为0，客户端为1
 cipher AES-256-CBC
