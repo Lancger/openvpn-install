@@ -60,26 +60,7 @@ ln -s openssl-1.0.0.cnf openssl.cnf
 
 1.制作证书
 ```
-[root@openvpn easy-rsa]# ./easyrsa gen-req vpn_server nopass  #nopass设置免证书密码，如果要设置密码可以取消此参数选项
-
-Note: using Easy-RSA configuration from: ./vars   #使用vars文件里面配置的信息
-Generating a 2048 bit RSA private key
-..+++
-..........+++
-writing new private key to '/etc/openvpn/easy-rsa/pki/private/vpn_server.key.Wednp5WSPr'
------
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,
-If you enter '.', the field will be left blank.
------
-Common Name (eg: your user, host, or server name) [vpn_server]:  #直接回车，默认名字为vpn_server
-
-Keypair and certificate request completed. Your files are:
-req: /etc/openvpn/easy-rsa/pki/reqs/vpn_server.req
-key: /etc/openvpn/easy-rsa/pki/private/vpn_server.key   #密钥key的路径
+$ ./build-key-server server
 ```
 2.证书签名、签约
 ```
@@ -345,4 +326,6 @@ target     prot opt source               destination
 ```
 参考资料：
 
-http://www.89cool.com/807.html
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04
+
+https://help.ubuntu.com/community/OpenVPN
