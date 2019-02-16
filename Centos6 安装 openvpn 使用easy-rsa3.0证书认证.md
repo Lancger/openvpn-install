@@ -126,6 +126,28 @@ Data Base Updated
 
 Certificate created at: /etc/openvpn/easy-rsa/pki/issued/vpn_server.crt          #服务端证书路径
 ```
+
+3.dh证书
+```
+[root@openvpn easy-rsa]# ./easyrsa gen-dh     #创建Diffie-Hellman，时间有点长
+Note: using Easy-RSA configuration from: ./vars
+Generating DH parameters, 2048 bit long safe prime, generator 2
+This is going to take a long time
+........................................++*++*
+
+DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem      #dh证书路径
+```
+
+4.ta密钥
+```
+[root@openvpn easy-rsa]# cd /etc/openvpn
+[root@openvpn openvpn]# openvpn --genkey --secret ta.key
+```
+
+## 四、客户端证书
+```
+
+```
 参考资料：
 
 http://www.89cool.com/807.html
