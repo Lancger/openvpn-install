@@ -83,15 +83,15 @@ widows系统上连接vpn
 1：下载客户端
    https://openvpn.net/community-downloads/
 ```
-  ![windows openvpn软件下载](https://github.com/Lancger/openvpn-install/images/blob/master/windows-openvpn-01.png)
+  ![windows openvpn软件下载](https://github.com/Lancger/openvpn-install/blob/master/images/windows-openvpn-01.png)
 
 ```
 2：放入登录秘钥zzh.ovpn
    客户端默认安装的，把秘钥放入C:\Program Files\OpenVPN\config
   （我这里安装时是自定义安装路径：如下图）
 ```
-  ![openvpn02](https://github.com/Lancger/openvpn-install/images/blob/master/windows-openvpn-02.png)
-  ![openvpn03](https://github.com/Lancger/openvpn-install/images/blob/master/windows-openvpn-03.png)
+  ![openvpn02](https://github.com/Lancger/openvpn-install/blob/master/images/windows-openvpn-02.png)
+  ![openvpn03](https://github.com/Lancger/openvpn-install/blob/master/images/windows-openvpn-03.png)
 
 
 ```
@@ -127,7 +127,7 @@ verb 3
 crl-verify crl.pem
 ```
 
-  ![openvpn04](https://github.com/Lancger/openvpn-install/images/blob/master/windows-openvpn-04.png)
+  ![openvpn04](https://github.com/Lancger/openvpn-install/blob/master/images/windows-openvpn-04.png)
 
 ``` 
 重启服务器
