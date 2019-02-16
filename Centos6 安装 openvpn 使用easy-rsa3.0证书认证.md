@@ -290,7 +290,7 @@ verb 3                 #日志级别
 ## 六、服务启动
 ```
 #server服务器端
-server openvpn start
+service openvpn start
 
 #linux客户端
 openvpn --daemon --cd /etc/openvpn --config client.ovpn --log-append /var/log/openvpn.log   #放后台执行  
