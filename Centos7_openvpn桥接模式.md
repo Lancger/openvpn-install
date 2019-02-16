@@ -280,7 +280,8 @@ key /etc/openvpn/certs/server.key
 dh /etc/openvpn/certs/dh.pem 
 user openvpn
 group openvpn
-server 10.10.100.0 255.255.255.0
+#server-bridge 网桥br0的IP 子网掩码 分配给客户端IP段
+server-bridge 172.18.71.140 255.255.240.0 172.18.71.141 172.18.71.145
 client-config-dir /etc/openvpn/ccd    #为了配置固定IP
 client-to-client
 duplicate-cn
