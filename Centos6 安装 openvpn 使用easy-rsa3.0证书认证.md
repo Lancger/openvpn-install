@@ -239,6 +239,8 @@ dh dh.pem                #dh密钥
 server 10.8.0.0 255.255.255.0        #给客户端分配的地址池
 ifconfig-pool-persist ipp.txt
 push "route 172.18.71.0 255.255.255.0 vpn_gateway"    #访问172.18.71.0/24网段走vpn网关,其他的走默认网关
+client-to-client  # 可以让客户端之间相互访问直接通过openvpn程序转发，根据需要设置
+duplicate-cn  # 如果客户端都使用相同的证书和密钥连接VPN，一定要打开这个选项，否则每个证书只允许一个人连接VPN
 #push "redirect-gateway def1 bypass-dhcp"             #客户端网关使用openvpn服务器网关
 #push "dhcp-option DNS 8.8.8.8"                       #指定dns
 #push "dhcp-option DNS 114.114.114.114"
