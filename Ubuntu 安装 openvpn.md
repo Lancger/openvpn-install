@@ -176,9 +176,11 @@ sysctl -p
 2.查看路由
 ```
 sudo ip route | grep default
+
 default via 172.18.79.253 dev eth0 proto dhcp src 172.18.71.139 metric 100
 
-sudo nano /etc/ufw/before.rules
+sudo vim /etc/ufw/before.rules
+
 新增下面nat配置
 # START OPENVPN RULES
 # NAT table rules
@@ -189,7 +191,8 @@ sudo nano /etc/ufw/before.rules
 COMMIT
 # END OPENVPN RULES
 
-sudo nano /etc/default/ufw
+sudo vim /etc/default/ufw
+
 允许转发流量通过
 DEFAULT_FORWARD_POLICY="ACCEPT"
 
