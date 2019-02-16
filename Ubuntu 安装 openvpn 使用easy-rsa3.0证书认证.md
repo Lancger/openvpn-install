@@ -81,6 +81,7 @@ $ ./build-key client1
 1.服务器端证书和密钥统一放到和server.conf一个目录下，便于配置
 ```
 cd ~/openvpn-ca/keys
+
 sudo cp ca.crt server.crt server.key ta.key dh2048.pem /etc/openvpn
 
 ```
