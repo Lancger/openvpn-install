@@ -72,12 +72,13 @@ Your new CA certificate file for publishing is at:
 
 1).制作证书
 ```
-[root@openvpn easy-rsa]# ./easyrsa gen-req server nopass   #nopass设置免证书密码，如果要设置密码可以取消此参数选项
-Note: using Easy-RSA configuration from: ./vars       #使用vars文件里面配置的信息
+[root@openvpn easy-rsa]# ./easyrsa gen-req vpn_server nopass  #nopass设置免证书密码，如果要设置密码可以取消此参数选项
+
+Note: using Easy-RSA configuration from: ./vars   #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.....................................+++
-................................................................................................+++
-writing new private key to '/etc/openvpn/easy-rsa/pki/private/server.key.yuG9HRsSlU'
+..+++
+..........+++
+writing new private key to '/etc/openvpn/easy-rsa/pki/private/vpn_server.key.Wednp5WSPr'
 -----
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
@@ -86,13 +87,45 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Common Name (eg: your user, host, or server name) [server]:    #直接回车，默认名字为server
+Common Name (eg: your user, host, or server name) [vpn_server]:  #直接回车，默认名字为vpn_server
 
 Keypair and certificate request completed. Your files are:
-req: /etc/openvpn/easy-rsa/pki/reqs/server.req
-key: /etc/openvpn/easy-rsa/pki/private/server.key              #密钥key的路径
+req: /etc/openvpn/easy-rsa/pki/reqs/vpn_server.req
+key: /etc/openvpn/easy-rsa/pki/private/vpn_server.key   #密钥key的路径
 ```
+2).证书签名、签约
+```
+[root@openvpn easy-rsa]# ./easyrsa sign server vpn_server   #vpn_server根据上面证书名保持一致
 
+Note: using Easy-RSA configuration from: ./vars
+
+
+You are about to sign the following certificate.
+Please check over the details shown below for accuracy. Note that this request
+has not been cryptographically verified. Please be sure it came from a trusted
+source or that you have verified the request checksum with the sender.
+
+Request subject, to be signed as a server certificate for 3650 days:
+
+subject=
+    commonName                = server
+
+
+Type the word 'yes' to continue, or any other input to abort.
+  Confirm request details: yes
+Using configuration from ./openssl-1.0.cnf
+Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:            #输入上面ca证书生成时的密码（123456）
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :PRINTABLE:'server'
+Certificate is to be certified until May 22 03:23:38 2028 GMT (3650 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+Certificate created at: /etc/openvpn/easy-rsa/pki/issued/server.crt          #服务端证书路径
+```
 参考资料：
 
 http://www.89cool.com/807.html
