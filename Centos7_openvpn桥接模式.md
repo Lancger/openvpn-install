@@ -25,7 +25,7 @@ vi /etc/sysctl.conf
 net.ipv4.ip_forward=1
 
 保存文件
-sysctl –p
+sysctl -p
 ```
 # 二、配置easy-rsa-3.0
 1. 复制文件
