@@ -1,5 +1,5 @@
  使用openvpn实现办公室和IDC机房互通
-
+```
 最近上线了一个项目，服务器放在郑州的IDC机房，运维需要在广州办公室远程管理服务器，因此采用OPENVPN架设vpn服务器，打通办公室和IDC机房之间的网络。
 
 服务器和网络规划如下：
@@ -276,7 +276,7 @@ traceroute to 172.16.0.31 (172.16.0.31), 30 hops max, 60 byte packets
 # service iptables save
 
 
-
+```
 参考文档:
 
 https://www.cnblogs.com/huangweimin/articles/7712771.html#4171910
