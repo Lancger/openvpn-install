@@ -18,7 +18,7 @@ OpenVPN 2.4.6 x86_64-redhat-linux-gnu [Fedora EPEL patched] [SSL (OpenSSL)] [LZO
 [root@openvpn ~]# cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/
 ```
 
-## 二、服务器证书
+## 二、服务器证书ca.crt
 ```
 [root@openvpn ~]# ls /usr/share/easy-rsa/3.0.3/     #easy-rsa3的版本只有如下几个文件、目录，比2版本少了很多
 easyrsa  openssl-1.0.cnf  x509-types
@@ -68,9 +68,9 @@ Your new CA certificate file for publishing is at:
 /etc/openvpn/easy-rsa/pki/ca.crt        #ca证书存放路径
 ```
 
-2.服务端证书server.crt
+## 三、服务端证书server.crt
 
-1).制作证书
+1.制作证书
 ```
 [root@openvpn easy-rsa]# ./easyrsa gen-req vpn_server nopass  #nopass设置免证书密码，如果要设置密码可以取消此参数选项
 
@@ -93,7 +93,7 @@ Keypair and certificate request completed. Your files are:
 req: /etc/openvpn/easy-rsa/pki/reqs/vpn_server.req
 key: /etc/openvpn/easy-rsa/pki/private/vpn_server.key   #密钥key的路径
 ```
-2).证书签名、签约
+2.证书签名、签约
 ```
 [root@openvpn easy-rsa]# ./easyrsa sign server vpn_server   #vpn_server根据上面证书名保持一致
 
