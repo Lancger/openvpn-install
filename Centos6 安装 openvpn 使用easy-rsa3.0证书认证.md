@@ -108,23 +108,23 @@ source or that you have verified the request checksum with the sender.
 Request subject, to be signed as a server certificate for 3650 days:
 
 subject=
-    commonName                = server
+    commonName                = vpn_server
 
 
 Type the word 'yes' to continue, or any other input to abort.
   Confirm request details: yes
 Using configuration from ./openssl-1.0.cnf
-Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:            #输入上面ca证书生成时的密码（123456）
+Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:     123456       #输入上面ca证书生成时的密码（123456）
 Check that the request matches the signature
 Signature ok
 The Subject's Distinguished Name is as follows
-commonName            :PRINTABLE:'server'
+commonName            :PRINTABLE:'vpn_server'
 Certificate is to be certified until May 22 03:23:38 2028 GMT (3650 days)
 
 Write out database with 1 new entries
 Data Base Updated
 
-Certificate created at: /etc/openvpn/easy-rsa/pki/issued/server.crt          #服务端证书路径
+Certificate created at: /etc/openvpn/easy-rsa/pki/issued/vpn_server.crt          #服务端证书路径
 ```
 参考资料：
 
