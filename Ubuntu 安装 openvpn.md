@@ -181,13 +181,15 @@ default via 172.18.79.253 dev eth0 proto dhcp src 172.18.71.139 metric 100
 
 sudo vim /etc/ufw/before.rules
 
-新增下面nat配置
+新增下面nat配置(加到文件最后)
+
 # START OPENVPN RULES
 # NAT table rules
 *nat
 :POSTROUTING ACCEPT [0:0] 
 # Allow traffic from OpenVPN client to wlp11s0 (change to the interface you discovered!)
 -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+#-A POSTROUTING -o eth0 -j MASQUERADE
 COMMIT
 # END OPENVPN RULES
 
@@ -201,7 +203,7 @@ sudo ufw allow OpenSSH
 
 sudo ufw disable
 sudo ufw enable
-
+sudo ufw status
 
 设置nat转发:
 注：保证VPN地址池可路由出外网(避免拨了vpn上不了外网的情况)
