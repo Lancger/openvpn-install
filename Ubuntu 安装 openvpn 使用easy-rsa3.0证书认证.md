@@ -42,6 +42,18 @@ $ ./clean-all
 
 生成根证书
 $ ./build-ca
+
+执行报错
+root@openvpn:/etc/openvpn/easy-rsa# ./build-ca
+grep: /etc/openvpn/easy-rsa/openssl.cnf: No such file or directory
+pkitool: KEY_CONFIG (set by the ./vars script) is pointing to the wrong
+version of openssl.cnf: /etc/openvpn/easy-rsa/openssl.cnf
+The correct version should have a comment that says: easy-rsa version 2.x
+root@openvpn:/etc/openvpn/easy-rsa#
+
+报错解决
+cd /etc/openvpn/easy-rsa/
+ln -s openssl-1.0.0.cnf openssl.cnf
 ```
 
 ## 三、服务端证书server.crt
