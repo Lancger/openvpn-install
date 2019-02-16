@@ -16,6 +16,7 @@ yum makecache
 2. 安装 openvpn
 ```shell
 yum -y install openvpn easy-rsa
+yum install -y net-tools.x86_64 ntp ntpdate bridge-utils gcc libssl-dev openssl-devel pam-devel
 ```
 
 # 二、配置easy-rsa-3.0
