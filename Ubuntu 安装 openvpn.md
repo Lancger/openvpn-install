@@ -146,11 +146,12 @@ verb 3                 #日志级别
 ## 六、服务启动
 ```
 #server服务器端
-service openvpn restart
+sudo systemctl restart openvpn@server
+
+sudo systemctl status openvpn@server
 
 #linux客户端
 openvpn --daemon --cd /etc/openvpn --config client.ovpn --log-append /var/log/openvpn.log   #放后台执行  
-
 ```
 
 ## 七、防火墙设置
