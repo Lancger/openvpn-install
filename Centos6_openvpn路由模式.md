@@ -316,11 +316,15 @@ sysctl -p
 设置nat转发:
 注：保证VPN地址池可路由出外网(避免拨了vpn上不了外网的情况)
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 永久保存：
 iptables-save > /etc/sysconfig/iptables
 或
 /etc/init.d/iptables save
+
+最后需要重启防火墙，策略才生效
+/etc/sysconfig/iptables restart   
 
 #查看防火墙nat策略
 iptables -t nat -L -n
