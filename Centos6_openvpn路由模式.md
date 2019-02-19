@@ -324,7 +324,8 @@ iptables-save > /etc/sysconfig/iptables
 /etc/init.d/iptables save
 
 最后需要重启防火墙，策略才生效
-/etc/sysconfig/iptables restart   
+/etc/init.d/iptables restart
+
 
 #查看防火墙nat策略
 iptables -t nat -L -n
