@@ -336,6 +336,7 @@ root># cat /etc/sysconfig/iptables
 COMMIT
 # Completed on Tue Feb 19 11:14:39 2019
 
+
 #查看防火墙策略
 [root@localhost]# iptables -t nat -L -n
 Chain PREROUTING (policy ACCEPT)
