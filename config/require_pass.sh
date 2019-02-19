@@ -48,6 +48,6 @@ cert client01.crt      #客户端证书
 key client01.key       #客户端密钥
 tls-auth ta.key 1      #ta密钥
 cipher AES-256-CBC
-comp-lzo               #传输内容压缩
+comp-lzo               #传输内容压缩,这个参数必须要，不然网络不通
 verb 3                 #日志级别
 auth-user-pass
