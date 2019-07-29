@@ -27,3 +27,39 @@ You can get a little VPS from just $1/month at [VirMach](https://billing.virmach
 ### Donations
 
 If you want to show your appreciation, you can donate via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VBAYDL34Z7J6L) or [cryptocurrency](https://pastebin.com/raw/M2JJpQpC). Thanks!
+
+
+# 账号密码验证
+```
+cd /etc/openvpn/server
+root># cat server.conf
+port 1194
+proto tcp
+dev tun
+sndbuf 0
+rcvbuf 0
+ca ca.crt
+cert server.crt
+key server.key
+dh dh.pem
+auth SHA512
+tls-auth ta.key 0
+topology subnet
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 100.100.2.136"
+push "dhcp-option DNS 100.100.2.138"
+keepalive 10 120
+cipher AES-256-CBC
+user nobody
+group nobody
+persist-key
+auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env
+username-as-common-name
+script-security 3
+persist-tun
+status openvpn-status.log
+verb 3
+crl-verify crl.pem
+```
