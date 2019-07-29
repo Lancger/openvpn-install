@@ -63,3 +63,8 @@ status openvpn-status.log
 verb 3
 crl-verify crl.pem
 ```
+
+# 客户端新增
+```
+auth-user-pass
+```
