@@ -8,6 +8,17 @@ Run the script and follow the assistant:
 
 `wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh`
 
+```
+(demo3) ➜  ~ nc -zvu 47.100.42.111 1194       --测试udp端口连通性
+found 0 associations
+found 1 connections:
+     1:	flags=82<CONNECTED,PREFERRED>
+	outif (null)
+	src 172.17.1.78 port 57214
+	dst 47.100.42.111 port 1194
+	rank info not available
+```
+
 Once it ends, you can run it again to add more users, remove some of them or even completely uninstall OpenVPN.
 
 ### I want to run my own VPN but don't have a server for that
