@@ -46,7 +46,7 @@ auth SHA512
 tls-auth ta.key 0
 topology subnet
 server 10.8.0.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
+ifconfig-pool-persist ipp.txt 0  --  后面必须加 0 才会生效,会自动在ip.txt记录不同账号的IP
 push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 100.100.2.136"
 push "dhcp-option DNS 100.100.2.138"
