@@ -55,9 +55,9 @@ cipher AES-256-CBC
 user nobody
 group nobody
 persist-key
-auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env
-username-as-common-name
-script-security 3
+auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env   ---新增
+username-as-common-name   ---新增
+script-security 3  ---新增
 persist-tun
 status openvpn-status.log
 verb 3
@@ -66,5 +66,7 @@ crl-verify crl.pem
 
 # 客户端新增
 ```
-auth-user-pass
+auth-user-pass  ---新增
+
+systemctl restart openvpn-server@server.service
 ```
