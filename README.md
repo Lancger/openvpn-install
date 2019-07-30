@@ -64,7 +64,7 @@ verb 3
 crl-verify crl.pem
 ```
 
-# 通过CCD配置
+# 通过CCD配置固定IP
 ```
 root># cat server.conf
 port 1194
