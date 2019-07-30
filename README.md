@@ -64,6 +64,50 @@ verb 3
 crl-verify crl.pem
 ```
 
+# 通过CCD配置
+```
+root># cat server.conf
+port 1194
+proto tcp
+dev tun
+sndbuf 0
+rcvbuf 0
+ca ca.crt
+cert server.crt
+key server.key
+dh dh.pem
+auth SHA512
+tls-auth ta.key 0
+topology subnet
+server 10.8.0.0 255.255.255.0
+#ifconfig-pool-persist ipp.txt
+client-config-dir /etc/openvpn/ccd
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 100.100.2.136"
+push "dhcp-option DNS 100.100.2.138"
+keepalive 10 120
+cipher AES-256-CBC
+user nobody
+group nobody
+persist-key
+auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env
+username-as-common-name
+script-security 3
+persist-tun
+status openvpn-status.log
+verb 3
+crl-verify crl.pem
+
+
+<2019-07-30 17:28:18> /etc/openvpn
+root># cat ccd/user01 
+ifconfig-push 10.8.0.15 255.255.255.0
+
+<2019-07-30 17:28:23> /etc/openvpn
+root># cat ccd/user02 
+ifconfig-push 10.8.0.5 255.255.255.0
+```
+
 # 客户端新增
 ```
 auth-user-pass  ---新增
