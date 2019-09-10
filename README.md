@@ -114,3 +114,11 @@ auth-user-pass  ---新增
 
 systemctl restart openvpn-server@server.service
 ```
+
+# 固定IP
+```
+cd /etc/openvpn/ccd/
+
+root># cat user01 
+ifconfig-push 10.8.0.13 255.255.255.0
+```
