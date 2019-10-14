@@ -78,10 +78,16 @@ crl-verify crl.pem
 
 
 #修改配置
+cd /etc/openvpn/
+
 cat > /etc/openvpn/psw-file <<\EOF
 user01 123456
 EOF
+
 chmod 644 /etc/openvpn/psw-file
+
+wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/checkpsw.sh
+chmod 755 checkpsw.sh
 
 chown nobody:nobody checkpsw.sh psw-file
 ```
