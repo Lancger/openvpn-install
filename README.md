@@ -15,6 +15,9 @@ export Time=`date "+%Y%m%d%H%M%S"`
 yes | cp /etc/sysconfig/iptables /etc/sysconfig/iptables_$Time
 > /etc/sysconfig/iptables
 service iptables save
+
+#重启openvpn服务
+systemctl restart openvpn-server@server.service
 ```
 
 ```
