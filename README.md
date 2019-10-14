@@ -67,13 +67,23 @@ cipher AES-256-CBC
 user nobody
 group nobody
 persist-key
-auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env   ---新增
-username-as-common-name   ---新增
-script-security 3  ---新增
+auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env   #---新增
+username-as-common-name   #---新增
+script-security 3  #---新增
 persist-tun
 status openvpn-status.log
+log openvpn.log
 verb 3
 crl-verify crl.pem
+
+
+#修改配置
+cat > /etc/openvpn/psw-file <<\EOF
+user01 123456
+EOF
+chmod 644 /etc/openvpn/psw-file
+
+chown nobody:nobody checkpsw.sh psw-file
 ```
 
 # 通过CCD配置固定IP
