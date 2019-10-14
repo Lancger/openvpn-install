@@ -6,9 +6,10 @@ This script will let you setup your own VPN server in no more than a minute, eve
 ### Installation
 Run the script and follow the assistant:
 
-```bash
-wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh
+`
+wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh`
 
+```bash
 #如果需要保存itpable策略，执行下面指令
 export Time=`date "+%Y%m%d%H%M%S"`
 yes | cp /etc/sysconfig/iptables /etc/sysconfig/iptables_$Time
