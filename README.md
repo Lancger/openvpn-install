@@ -10,7 +10,6 @@ Run the script and follow the assistant:
 wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh
 
 #如果需要保存itpable策略，执行下面指令
-
 export Time=`date "+%Y%m%d%H%M%S"`
 yes | cp /etc/sysconfig/iptables /etc/sysconfig/iptables_$Time
 > /etc/sysconfig/iptables
