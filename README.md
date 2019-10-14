@@ -90,6 +90,7 @@ wget https://raw.githubusercontent.com/Lancger/openvpn-install/master/checkpsw.s
 chmod 755 checkpsw.sh
 
 chown nobody:nobody checkpsw.sh psw-file
+ls -l /etc/openvpn/
 ```
 
 # 通过CCD配置固定IP
