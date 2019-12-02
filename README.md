@@ -139,7 +139,7 @@ ifconfig-push 10.8.0.5 255.255.255.0
 
 # 客户端新增
 ```
-auth-user-pass  ---新增
+auth-user-pass  #---新增
 
 systemctl restart openvpn-server@server.service
 ```
